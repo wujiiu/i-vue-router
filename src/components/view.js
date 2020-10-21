@@ -1,32 +1,31 @@
 export default {
     name: 'router-view',
+    functional: true,
     props: {
         name: {
             type: String,
             default: 'default'
         }
     },
-    created() {
-        // 标记 routerVie 类型
-        this._routerView = true
-
-        let parent = this.$parent
+    render(h, { props, children, parent, data }) {
+        const route = parent.$route
+         // 标记 routerVie 类型
+        let _parent = parent
         let depth = 0
-        while(parent) {
-            if(parent._routerView) {
+
+        while(_parent) {
+            if (_parent.$vnode && _parent.$vnode.data._routerView) {
                 depth ++
             }
-            parent = parent.$parent
+            _parent = _parent.$parent
         }
-        this.depth = depth
-    },
-    render(h) {
-        const matched = this.$route.matched[this.depth].components[this.name]
-        
+        data._routerView = true
+
+        const matched = route.matched[depth] && route.matched[depth].components[props.name] || null
         return h(
             matched,
-            null,
-            () => this.$slots.default
+            data,
+            children
         )
     }
 }
