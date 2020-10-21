@@ -7,7 +7,10 @@
 </head>
 <body>
     <div id="app">
-        <router-view></router-view>
+        <keep-alive>
+            <router-view v-if="show"></router-view>
+        </keep-alive>
+        
     </div>
     <script src="../lib/vue.js"></script>
     <script src="../dist/vue-router.js"></script>
@@ -50,7 +53,15 @@
         })
         const vm = new Vue({
             router,
-            el: '#app'
+            el: '#app',
+            data() {
+                return {
+                    show: true
+                }
+            },
+            mounted() {
+              
+            }
         })
     </script>
 </body>
