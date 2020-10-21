@@ -6,8 +6,10 @@ import { AbstractHistory } from './history/abstract'
 
 export default class VueRouter {
   constructor (options = {}) {
-    this._mode = options.mode || 'hash'
+
+    // 第二次提交 tweak只是交换了 this._root 和 this._mode ? 暂不知为啥
     this._root = options.root || '/'
+    this._mode = options.mode || 'hash'
     this.rootComponent = null
     this.match = createMatcher(options.routes || [])
 
@@ -30,9 +32,11 @@ export default class VueRouter {
   }
 }
 
-VueRouter.install =install
+VueRouter.install = install
 VueRouter.createMatcher = createMatcher
 
+
 if (typeof Vue !== 'undefined') {
+
   Vue.use(VueRouter)
 }

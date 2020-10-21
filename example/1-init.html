@@ -22,11 +22,17 @@
             {
                 path: '/about',
                 component: {
-                    template: `<div>about</div>`
+                    template: `<div>
+                        <p>about</p>    
+                        <router-view></router-view>
+                    </div>`
                 },
                 children: [
                     {
-                        path: 'detail'
+                        path: 'detail',
+                        component: {
+                            template: `<div>detial</div>`
+                        },
                     },
                     {
                         path: '/card'

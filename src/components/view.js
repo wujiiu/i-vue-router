@@ -21,12 +21,12 @@ export default {
         this.depth = depth
     },
     render(h) {
+        const matched = this.$route.matched[this.depth].components[this.name]
+        
         return h(
-            'div',
-            {
-
-            },
-            'haha'
+            matched,
+            null,
+            () => this.$slots.default
         )
     }
 }

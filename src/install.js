@@ -1,7 +1,7 @@
 import View from './components/view'
 import Link from './components/link'
 
-export default function install(Vue) {
+export function install(Vue) {
     Object.defineProperty(Vue.prototype, '$router', {
         get() {
             return this.$root._router
@@ -16,7 +16,8 @@ export default function install(Vue) {
      *  - 标记 rootComponent
      *  - 挂载 _route  触发 router-view更新
      */
-    Vue.mixins({
+    
+    Vue.mixin({
         beforeCreate() {
             if(this.$options.router) { // root组件有 rooter选线
                 this._router = this.$options.router
