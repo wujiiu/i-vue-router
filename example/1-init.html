@@ -16,14 +16,18 @@
             {
                 path: '/',
                 component: {
-                    template: `<div>hello</div>`
+                    template: `<div>
+                        <p>hello</p>
+                        <router-link to="/about">to about</router-link>
+                    </div>`
                 }
             },
             {
                 path: '/about',
                 component: {
                     template: `<div>
-                        <p>about</p>    
+                        <p>about</p>  
+                        <router-link to="/">to home</router-link>  
                         <router-view></router-view>
                     </div>`
                 },
