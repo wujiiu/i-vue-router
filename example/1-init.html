@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <router-view></router-view>
+    </div>
+    <script src="../lib/vue.js"></script>
+    <script src="../dist/vue-router.js"></script>
+    <script>
+        const routes = [
+            {
+                path: '/',
+                component: {
+                    template: `<div>hello</div>`
+                }
+            },
+            {
+                path: '/about',
+                component: {
+                    template: `<div>about</div>`
+                },
+                children: [
+                    {
+                        path: 'detail'
+                    },
+                    {
+                        path: '/card'
+                    }
+                ]
+            },
+        ]
+        
+        const router = new VueRouter({
+            routes
+        })
+        const vm = new Vue({
+            router,
+            el: '#app'
+        })
+    </script>
+</body>
+</html>
